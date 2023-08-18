@@ -1,10 +1,10 @@
 import streamlit as st
 import pickle
 import requests
+from sklearn.metrics.pairwise import cosine_similarity
 
 
 
-cosine_similarity = pickle.load(open("cosine_similarity.pkl","rb"))
 new_df = pickle.load(open("data.pkl","rb"))
 encoder = pickle.load(open("encoder.pkl","rb"))
 kmeans = pickle.load(open("kmeans.pkl","rb"))
@@ -51,7 +51,6 @@ def fetch_and_show_movie_poster(movie_id,movie_name,col):
 
 def recomed(movie_name):
     movie_id = new_df[new_df["Movie_key"] == movie_name]["Movie_id"].values[0]
-    print(movie_id)
     data = find_similar_movies(get_genres_for_movie(movie_id))
     
     movie = vectorizer.transform(new_df[new_df["Movie_id"] == movie_id]["tags"]).toarray()
