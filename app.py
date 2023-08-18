@@ -1,15 +1,10 @@
 import streamlit as st
 import pickle
-from sklearn.preprocessing import OneHotEncoder
-from sklearn.cluster import KMeans
-import pandas as pd
-import numpy as np
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
 import requests
-from IPython.display import display, Image
 
 
+
+cosine_similarity = pickle.load(open("cosine_similarity.pkl","rb"))
 new_df = pickle.load(open("data.pkl","rb"))
 encoder = pickle.load(open("encoder.pkl","rb"))
 kmeans = pickle.load(open("kmeans.pkl","rb"))
